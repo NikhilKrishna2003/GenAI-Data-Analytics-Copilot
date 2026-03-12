@@ -33,7 +33,7 @@ Users upload a dataset and ask questions directly.
 
 The system accepts CSV datasets for analysis.
 
-![Dataset Upload](iImages/Dataset.png)
+![Dataset Upload](Images/dataset.png)
 
 ---
 
