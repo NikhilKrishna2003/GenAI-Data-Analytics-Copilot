@@ -25,7 +25,7 @@ The application is designed as an **AI-powered self-service analytics system**.
 
 Users upload a dataset and ask questions directly.
 
-![Interface](images/interface.png)
+![Interface](Images/interface.png)
 
 ---
 
@@ -33,7 +33,7 @@ Users upload a dataset and ask questions directly.
 
 The system accepts CSV datasets for analysis.
 
-![Dataset Upload](images/Dataset.png)
+![Dataset Upload](iImages/Dataset.png)
 
 ---
 
@@ -47,7 +47,7 @@ Example:
 Count sellers per state
 ```
 
-![Ask Question](images/ask_question.png)
+![Ask Question](Images/ask_question.png)
 
 ---
 
@@ -55,7 +55,7 @@ Count sellers per state
 
 The LLM converts the natural language question into a structured analytical plan.
 
-![Structured Query Plan](images/structured_query_plan.png)
+![Structured Query Plan](Images/structured_query_plan.png)
 
 Example generated plan:
 
@@ -83,7 +83,7 @@ This step is where **Generative AI is used** to interpret user intent.
 
 The system converts the structured plan into a safe SQL query.
 
-![Generated SQL](images/genrated_sql.png)
+![Generated SQL](Images/genrated_sql.png)
 
 Example SQL:
 
@@ -101,7 +101,7 @@ LIMIT 10;
 
 The generated SQL is executed using DuckDB and the results are displayed instantly.
 
-![Query Result](images/query_result.png)
+![Query Result](Images/query_result.png)
 
 Example output:
 
@@ -118,7 +118,7 @@ Example output:
 
 Users can download the analysis results.
 
-![Download Outputs](images/download_outputs.png)
+![Download Outputs](Images/download_outputs.png)
 
 Generated files include:
 
