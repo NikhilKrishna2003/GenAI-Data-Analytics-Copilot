@@ -30,7 +30,7 @@ highest number of sellers from which state
 
 The system converts the natural language question into a structured analytical plan.
 
-![Structured Query Plan](Images/query_plan.png)
+![Structured Query Plan](Images/structured_query_plan.png)
 
 Example generated plan:
 
