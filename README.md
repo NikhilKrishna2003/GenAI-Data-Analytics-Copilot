@@ -10,7 +10,7 @@ This system enables users to analyze structured data simply by asking questions 
 
 ### Application Interface
 
-![Application Interface](images/interface.png)
+![Application Interface](Images/interface.png)
 
 Users upload a dataset and ask analytical questions in natural language.
 
@@ -30,7 +30,7 @@ highest number of sellers from which state
 
 The system converts the natural language question into a structured analytical plan.
 
-![Structured Query Plan](images/query_plan.png)
+![Structured Query Plan](Images/query_plan.png)
 
 Example generated plan:
 
@@ -59,7 +59,7 @@ Example generated plan:
 
 The system converts the structured plan into safe SQL.
 
-![Generated SQL](images/generated_sql.png)
+![Generated SQL](Images/generated_sql.png)
 
 Example SQL:
 
@@ -78,7 +78,7 @@ LIMIT 10;
 
 The SQL query is executed using DuckDB and results are displayed instantly.
 
-![Query Result](images/query_result.png)
+![Query Result](Images/query_result.png)
 
 Example output:
 
@@ -96,7 +96,7 @@ Example output:
 
 The system also generates downloadable analytics outputs.
 
-![Download Outputs](images/download_outputs.png)
+![Download Outputs](Images/download_outputs.png)
 
 Generated files include:
 
