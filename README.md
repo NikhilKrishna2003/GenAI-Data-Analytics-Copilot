@@ -83,7 +83,7 @@ This step is where **Generative AI is used** to interpret user intent.
 
 The system converts the structured plan into a safe SQL query.
 
-![Generated SQL](Images/genrated_sql.png)
+![Generated SQL](Images/generated_sql.png)
 
 Example SQL:
 
