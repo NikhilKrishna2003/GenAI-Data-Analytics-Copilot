@@ -15,7 +15,6 @@ from src.sql.validator import validate_sql
 from src.sql.executor import SQLExecutor
 from src.utils.helpers import sanitize_table_name, create_output_paths
 
-
 planner = QueryPlanner()
 
 
@@ -40,33 +39,24 @@ def analyze(file_obj, question: str):
         return "Please enter a question.", None, None, None, None, None
 
     try:
-        # Load uploaded CSV
         df = pd.read_csv(file_obj.name)
         table_name = sanitize_table_name(file_obj.name)
 
-        # Profile dataframe
         profiler_output = profile_dataframe(df)
 
-        # Retrieve relevant schema columns using embeddings
         retriever = SchemaRetriever()
         retriever.build_index(profiler_output)
         relevant_columns = retriever.retrieve(question, top_k=5)
 
-        # Prepare SQL executor and schema
         executor = SQLExecutor(df, table_name)
         schema_df = executor.describe()
         allowed_columns = schema_df["column_name"].astype(str).tolist()
 
-        # Step 1: raw LLM plan
         raw_plan = planner.plan(question, relevant_columns, table_name)
-
-        # Step 2: enhance plan with rule-based intent correction
         plan = enhance_plan(question, raw_plan, allowed_columns)
 
-        # Step 3: build SQL
         sql = build_sql_from_plan(plan, table_name)
 
-        # Step 4: validate SQL
         is_valid, msg = validate_sql(sql, allowed_columns, table_name)
         if not is_valid:
             return (
@@ -75,16 +65,12 @@ def analyze(file_obj, question: str):
                 json.dumps(plan, indent=2),
                 sql,
                 None,
-                None
+                None,
             )
 
-        # Step 5: execute SQL
         result_df = executor.execute(sql)
-
-        # Step 6: generate report
         report = generate_report(question, sql, result_df)
 
-        # Step 7: save outputs
         sql_path, data_path, report_path = create_output_paths()
 
         with open(sql_path, "w", encoding="utf-8") as f:
@@ -101,18 +87,18 @@ def analyze(file_obj, question: str):
             json.dumps(plan, indent=2),
             sql,
             result_df,
-            [sql_path, data_path, report_path]
+            [sql_path, data_path, report_path],
         )
 
     except Exception as e:
-        return f"Error: {e}", None, None, None, None, None
+        return f"Error: {str(e)}", None, None, None, None, None
 
 
-with gr.Blocks(title="AI Data Analyst Copilot V2") as demo:
-    gr.Markdown("# AI Data Analyst Copilot V2")
+with gr.Blocks(title="GenAI Data Analytics Copilot") as demo:
+    gr.Markdown("# GenAI Data Analytics Copilot")
     gr.Markdown(
-        "Upload any CSV, ask a question, retrieve relevant schema, generate a structured plan, "
-        "enhance analytical intent, then execute safe SQL."
+        "Upload a CSV, ask a question in natural language, and get a safe SQL query, "
+        "results table, and downloadable outputs."
     )
 
     with gr.Row():
@@ -121,7 +107,7 @@ with gr.Blocks(title="AI Data Analyst Copilot V2") as demo:
             question_input = gr.Textbox(
                 label="Ask a question",
                 lines=3,
-                placeholder="Example: Count sellers per state"
+                placeholder="Example: Count sellers per state",
             )
             run_btn = gr.Button("Run Analysis", variant="primary")
             status_output = gr.Textbox(label="Status", interactive=False)
@@ -142,8 +128,9 @@ with gr.Blocks(title="AI Data Analyst Copilot V2") as demo:
             plan_output,
             sql_output,
             result_output,
-            files_output
-        ]
+            files_output,
+        ],
     )
 
-demo.launch(share=True)
+if __name__ == "__main__":
+    demo.launch()
