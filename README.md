@@ -1,6 +1,6 @@
-# Note: Live Link 
 
 # GenAI Data Analytics Copilot
+🌐 Live App: https://huggingface.co/spaces/Nikhil212121212/genai-data-analytics-copilot
 
 GenAI-powered assistant that converts natural language questions into SQL queries and performs automated analytics on uploaded datasets.
 
